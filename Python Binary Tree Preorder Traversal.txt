@@ -1,0 +1,30 @@
+# Definition for a binary tree node.
+# Given the root of a binary tree, return the preorder traversal of its nodes' values.
+#
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        result = []
+        self.preorder(root, result)
+        return result
+    
+    def preorder(self, node: TreeNode, result: List[int]):
+        if node is None:
+            return
+        
+        result.append(node.val)  # Add the current node's value to the result
+        
+        # Recursively traverse the left and right subtrees
+        self.preorder(node.left, result)
+        self.preorder(node.right, result)

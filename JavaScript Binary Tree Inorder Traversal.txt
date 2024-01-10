@@ -1,0 +1,45 @@
+// Definition for a binary tree node.
+function TreeNode(val, left, right) {
+  this.val = val;
+  this.left = left;
+  this.right = right;
+}
+
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var inorderTraversal = function(root) {
+  var result = [];
+  var stack = [];
+  var curr = root;
+  
+  while (curr !== null || stack.length !== 0) {
+    // Traverse left subtree, pushing nodes into the stack
+    while (curr !== null) {
+      stack.push(curr);
+      curr = curr.left;
+    }
+    
+    // Pop the top node from the stack
+    curr = stack.pop();
+    
+    // Process the current node
+    result.push(curr.val);
+    
+    // Traverse right subtree
+    curr = curr.right;
+  }
+  
+  return result;
+};
+
+// Example usage
+var root = new TreeNode(1);
+root.left = new TreeNode(2);
+root.right = new TreeNode(3);
+root.left.left = new TreeNode(4);
+root.left.right = new TreeNode(5);
+
+var inorder = inorderTraversal(root);
+console.log(inorder);  // Output: [4, 2, 5, 1, 3]

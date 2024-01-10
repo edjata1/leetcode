@@ -1,0 +1,40 @@
+/**
+ * Given the root of a binary tree, return the preorder traversal of its nodes' values.
+ *
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+
+// Definition for a binary tree node.
+
+function TreeNode(val, left, right) {
+  this.val = val;
+  this.left = left;
+  this.right = right;
+}
+
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var preorderTraversal = function(root) {
+  var result = [];
+  preorder(root, result);
+  return result;
+};
+
+var preorder = function(node, result) {
+  if (node === null) {
+    return;
+  }
+  
+  result.push(node.val);  // Add the current node's value to the result
+  
+  // Recursively traverse the left and right subtrees
+  preorder(node.left, result);
+  preorder(node.right, result);
+};
